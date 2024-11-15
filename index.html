@@ -225,6 +225,13 @@
             document.getElementById('screenInfo').innerHTML = "窗口分辨率：<span class='highlight'>" + windowResolution + "</span>";
         }
         updateWindowSize();
+	window.addEventListener("message", function(event) {
+        if (event.data.type === "updateResolution") {
+            const { width, height } = event.data;
+            const windowResolution = `${width} x ${height}`;
+            document.getElementById('screenInfo').innerHTML = "窗口分辨率：<span class='highlight'>" + windowResolution + "</span>";
+        }
+   	});
         window.addEventListener("resize", updateWindowSize);
 
 
