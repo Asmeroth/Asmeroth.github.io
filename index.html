@@ -260,14 +260,12 @@ async function getIPDetails() {
 
         const ip = getipv6.ip || "未知";
         const city = geoData.city !== geoData.region ? geoData.city : ""; // 避免城市与地区重复
-        const region = geoData.region || ""; 
-        const country = geoData.country || "";
- 	//const continent = geoData.continent || "";
+        const region = geoData.regionName || ""; 
+        const country = geoData.country || "未知国家";
         const ipType = ip.includes(":") ? "IPv6" : "IPv4";
 
         // 组装属地信息
-        //const locationInfo = `${city} ${region} ${country}`。trim().replace(/\s+/g, ' ');
-	const locationInfo = `${country} ${region} ${city}`.trim().replace(/\s+/g, ' ');
+        const locationInfo = `${country} ${region} ${city}`.trim().replace(/\s+/g, ' ');
 
         // 更新页面内容，判断是否为IPv6
         document.getElementById('ipInfo').innerHTML = `
