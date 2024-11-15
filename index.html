@@ -123,7 +123,7 @@
             <div id="timezoneInfo" class="info">时区：<span class="highlight">加载中...</span></div>
             <div id="timeInfo" class="info">当前时间：<span class="highlight">加载中...</span></div>
             <div id="networkInfo" class="info">ISP：<span class="highlight">加载中...</span></div>
-            <div id="ipInfo" class="info">IP地址：<span class="highlight">加载中...</span></div>
+            <div id="ipInfo" class="info">IP 信息：<span class="highlight">加载中...</span></div>
             <div id="screenInfo" class="info">窗口分辨率：<span class="highlight">加载中...</span></div>
         </div>
 
@@ -261,17 +261,20 @@ async function getIPDetails() {
         const ip = getipv6.ip || "未知";
         const city = geoData.city !== geoData.region ? geoData.city : ""; // 避免城市与地区重复
         const region = geoData.regionName || ""; 
-        const country = geoData.country || "未知国家";
+        const country = geoData.country || "";
+        const continent = geoData.continent || "";
         const ipType = ip.includes(":") ? "IPv6" : "IPv4";
 
         // 组装属地信息
-        const locationInfo = `${country} ${region} ${city}`.trim().replace(/\s+/g, ' ');
+        const locationInfo = [city, region, country, continent]
+    .filter(Boolean) // 过滤掉空字符串
+    .join(", ");
 
         // 更新页面内容，判断是否为IPv6
         document.getElementById('ipInfo').innerHTML = `
-            IPv4地址：<span class='highlight'>${ipv4}</span> <br>
-            ${ipType === "IPv6" ? `IPv6地址：<span class='highlight'>${ip}</span> <br>` : ""}
-            属地：<span class='highlight'>${locationInfo}</span>
+            IPv4 地址：<span class='highlight'>${ipv4}</span> <br>
+            ${ipType === "IPv6" ? `IPv6 地址：<span class='highlight'>${ip}</span> <br>` : ""}
+            IP 属地：<span class='highlight'>${locationInfo}</span>
         `;
     } catch (error) {
         console.error("获取IP信息时出错：", error);
