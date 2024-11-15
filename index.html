@@ -262,11 +262,11 @@ async function getIPDetails() {
         const city = geoData.city !== geoData.region ? geoData.city : ""; // 避免城市与地区重复
         const region = geoData.region || ""; 
         const country = geoData.country || "";
- 	const continent = geoData.continent || "";
+ 	//const continent = geoData.continent || "";
         const ipType = ip.includes(":") ? "IPv6" : "IPv4";
 
         // 组装属地信息
-        const locationInfo = `${city} ${region} ${country} ${continent}`。trim().replace(/\s+/g, ' ');
+        const locationInfo = `${city} ${region} ${country}`。trim().replace(/\s+/g, ' ');
 
         // 更新页面内容，判断是否为IPv6
         document.getElementById('ipInfo').innerHTML = `
