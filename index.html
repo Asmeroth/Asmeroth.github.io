@@ -239,7 +239,7 @@ async function getIPDetails() {
        
 	        // 获取网络信息
          //const geoResponse = await fetch(' http://ip-api.com/json/?lang=zh-CN ');
-	const geoResponse = await fetch(' http://ip-api.com/json/');
+	const geoResponse = await fetch('https://cors-anywhere.herokuapp.com/http://ip-api.com/json/');
         const geoData = await geoResponse.json();
 	const ipv4 = geoData.query || "未知";
 	
