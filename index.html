@@ -266,7 +266,8 @@ async function getIPDetails() {
         const ipType = ip.includes(":") ? "IPv6" : "IPv4";
 
         // 组装属地信息
-        const locationInfo = `${city} ${region} ${country}`。trim().replace(/\s+/g, ' ');
+        //const locationInfo = `${city} ${region} ${country}`。trim().replace(/\s+/g, ' ');
+	const locationInfo = `${country} ${region} ${city}`.trim().replace(/\s+/g, ' ');
 
         // 更新页面内容，判断是否为IPv6
         document.getElementById('ipInfo').innerHTML = `
